@@ -130,13 +130,16 @@ public class SQLiteConnectionManager {
 
 
         String sql = "INSERT INTO validWords(id,word) VALUES('" + id + "','" + word + "')";
+        String sql2 = "INSERT INTO validWords(id,word) VALUES( ?, ?)";
+
 
         try (Connection conn = DriverManager.getConnection(databaseURL);
-                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
 
 
 
-                   // pstmt.setInt(1, id);
+                    pstmt.setInt(1, id);
+                    pstmt.setString(2, word);
 
 
 
